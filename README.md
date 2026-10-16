@@ -72,7 +72,7 @@ Copy the kit's **`html`** folder into `templates/<your template>/`, make sure th
 
 ## Tested
 
-Fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with stock Cassiopeia, each run through the same **59 checks** in a real browser (desktop 1440 px and mobile 375 px), installing the kit exactly as described above. It was also tried by hand on Joomla 6.1.3 while building.
+Fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with stock Cassiopeia, each run through the same **59 checks** in a real browser (desktop 1440 px and mobile 375 px), installing the kit exactly as described above. It was also tried by hand on Joomla 6.1.4 while building.
 
 - **Register and thank-you:** the page renders with its stylesheet, an empty submit is blocked and the fields flagged, a taken username shows Joomla's own error and keeps what was typed, and a valid sign-up creates the account and reaches the thank-you page.
 - **Profile and edit profile** as a Registered user, a Manager and a Super User: the "Your preferences" card is hidden for Registered and shown for the other two; a rejected email field turns red; saving shows "Profile saved" and Cancel returns to the profile.
@@ -80,7 +80,7 @@ Fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with stock Cassiopeia, 
 - **Forgotten password, start to finish:** an empty request is blocked; with a code set directly in the database (the test machine cannot send email), the "Check your email" step accepts it, "Choose a new password" saves the new password, and signing in with it works. **Forgotten username** submits without error.
 - **Every page:** one `<main>`, one `<h1>`, headings in order inside the page, no raw wording keys, no PHP notices, no JavaScript errors or failed requests, and no sideways scroll at 375 px.
 
-Checked by hand on 6.1.3 only: saving the profile as a Registered user leaves their stored time zone and language untouched.
+Checked by hand on 6.1.4 only: saving the profile as a Registered user leaves their stored time zone and language untouched.
 
 **Not tested:** other templates, captcha, passkey or other extra sign-in buttons (the kit keeps them, but no such plugin was installed), the User - Profile plugin's extra fields, a real dark colour scheme (Cassiopeia has none), right-to-left languages, and languages other than English.
 
