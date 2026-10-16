@@ -50,9 +50,9 @@ The kit was designed and written with the help of an AI assistant (Claude, from 
 
 ### Get it
 
-- **Download and source:** https://github.com/dmlwebal/joomla-friendly-account-pages
-- **Install guide:** `INSTALL.md` in the download
-- **Report a problem or share a template:** the repository's Issues page
+- **Download the latest version (ZIP):** https://github.com/dmlwebal/joomla-friendly-account-pages/releases/latest
+- **Source code and install guide:** https://github.com/dmlwebal/joomla-friendly-account-pages (the guide is `INSTALL.md`, also inside the ZIP)
+- **Report a problem or share a template:** https://github.com/dmlwebal/joomla-friendly-account-pages/issues
 
 *Friendly Account Pages is an independent project and is not affiliated with or endorsed by the Joomla Project or Open Source Matters, Inc. Joomla® is a registered trademark of Open Source Matters, Inc.*
 
@@ -64,7 +64,7 @@ The kit was designed and written with the help of an AI assistant (Claude, from 
 Joomla's sign-in, sign-up and profile pages are due a makeover. Friendly Account Pages is a free, drop-in kit: rounded cards, plain-English wording, follows your template's colours and fonts. Joomla 5 and 6, Bootstrap only, no plugin. https://github.com/dmlwebal/joomla-friendly-account-pages
 
 **Forum post (three lines):**
-I've released a free set of template overrides that redesign Joomla's sign-in, forgotten-password, registration, thank-you, profile and edit-profile screens (Bootstrap 5 only, Joomla 5.4 and 6.x, GPL). Copy one folder into your template; wording is editable via Language Overrides. Tested on stock Cassiopeia; I'd love reports from other templates: https://github.com/dmlwebal/joomla-friendly-account-pages
+I've released a free set of template overrides that redesign Joomla's sign-in, forgotten-password, registration, thank-you, profile and edit-profile screens (Bootstrap 5 only, Joomla 5.4 and 6.x, GPL). Copy one folder into your template; wording is editable via Language Overrides. Tested on stock Cassiopeia; I'd love reports from other templates. Download: https://github.com/dmlwebal/joomla-friendly-account-pages/releases/latest
 
 **One-line description (for directories and the repo):**
 Friendly, rounded, plain-English sign-in, forgotten-password, registration and profile pages for Joomla 5 and 6, as Bootstrap-only template overrides.
