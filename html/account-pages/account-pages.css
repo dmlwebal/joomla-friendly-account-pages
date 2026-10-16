@@ -1,0 +1,360 @@
+/* ================================================================
+   Friendly account pages: register, thank-you, profile, edit profile
+   Shared stylesheet for the com_users overrides in this folder.
+
+   Follows the site, nothing to configure:
+   - No font is set anywhere, so text uses the template's own fonts.
+   - The coloured surfaces (welcome panel, avatar, buttons) are painted by the
+     template's own Bootstrap classes (bg-primary, btn-primary), so they are always
+     the template's primary colour.
+   - Soft tints (shadows, focus ring, strength bar) use --acct-accent, which looks for
+     the template's primary colour (--bs-primary, then Cassiopeia's own variable) and
+     falls back to neutral grey tints if it finds neither.
+   - Borders and muted text are taken from the current text colour, so light and dark
+     colour schemes both work.
+
+   To force a colour for the tints, set --acct-accent-override on .acct in your own CSS.
+   Needs color-mix() (any current Chrome, Edge, Firefox or Safari); without it the
+   pages still work, just with plainer shadows.
+   ================================================================ */
+
+.acct {
+  --acct-accent: var(--acct-accent-override, var(--bs-primary, var(--cassiopeia-color-primary, #000)));
+  --acct-radius: 1.25rem;
+  --acct-field-radius: 0.75rem;
+  --acct-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --acct-line: rgb(0 0 0 / 0.14);
+  --acct-muted: rgb(0 0 0 / 0.6);
+  --acct-soft: rgb(0 0 0 / 0.05);
+  --acct-ring: rgb(0 0 0 / 0.25);
+  /* Layered shadow, tinted with the accent where it can be (a flat grey one looks generic). */
+  --acct-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 14px 32px -16px rgb(0 0 0 / 0.25);
+}
+
+@supports (color: color-mix(in srgb, red 10%, blue)) {
+  .acct {
+    --acct-line: color-mix(in srgb, currentColor 14%, transparent);
+    --acct-muted: color-mix(in srgb, currentColor 62%, transparent);
+    --acct-soft: color-mix(in srgb, currentColor 6%, transparent);
+    --acct-ring: color-mix(in srgb, var(--acct-accent) 32%, transparent);
+    --acct-shadow:
+      0 1px 2px color-mix(in srgb, var(--acct-accent) 12%, transparent),
+      0 6px 14px -6px color-mix(in srgb, var(--acct-accent) 16%, transparent),
+      0 22px 44px -22px color-mix(in srgb, var(--acct-accent) 34%, transparent);
+  }
+}
+
+/* Headings: tight tracking; body copy: generous line-height. */
+.acct h1,
+.acct h2,
+.acct .h2,
+.acct .h4,
+.acct .h5 {
+  letter-spacing: -0.03em;
+}
+.acct p,
+.acct dd {
+  line-height: 1.7;
+}
+.acct .lead {
+  color: inherit; /* some templates colour .lead; keep it the normal text colour */
+}
+
+/* ---------------------------------------------------------------
+   Surfaces
+   --------------------------------------------------------------- */
+.acct .card {
+  border-color: var(--acct-line);
+  border-radius: var(--acct-radius);
+  box-shadow: var(--acct-shadow);
+}
+
+/* Welcome panel: layered radial gradients plus a faint grain, laid over the colour that
+   the template's text-bg-primary class paints. */
+.acct .acct-welcome {
+  overflow: hidden;
+  border: 0;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    radial-gradient(120% 90% at 0% 0%, rgb(255 255 255 / 0.22), transparent 55%),
+    radial-gradient(90% 80% at 100% 100%, rgb(0 0 0 / 0.26), transparent 62%);
+}
+.acct .acct-welcome h1,
+.acct .acct-welcome p {
+  color: inherit; /* a template's heading colour must not turn this dark on the accent */
+}
+.acct .acct-chip {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Initial / check badge. Colour comes from the bg-primary class in the markup. */
+.acct .acct-avatar {
+  display: grid;
+  place-items: center;
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 50%;
+  background-image: linear-gradient(145deg, rgb(255 255 255 / 0.24), rgb(0 0 0 / 0.2));
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px -8px var(--acct-accent);
+}
+
+/* ---------------------------------------------------------------
+   Form fields (Joomla's own control-group markup)
+   --------------------------------------------------------------- */
+.acct .control-label label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.acct .form-control,
+.acct .form-select,
+.acct .controls input[type="text"],
+.acct .controls input[type="email"],
+.acct .controls input[type="password"],
+.acct .controls select {
+  padding: 0.7rem 0.9rem;
+  border-color: var(--acct-line);
+  border-radius: var(--acct-field-radius);
+}
+.acct .form-control:focus,
+.acct .form-control:focus-visible,
+.acct .form-select:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--acct-ring);
+}
+.acct .form-control[readonly],
+.acct .form-control:disabled {
+  background-color: var(--acct-soft);
+}
+
+/* Password box and its show/hide eye read as one control. */
+.acct .input-group > .form-control {
+  border-start-start-radius: var(--acct-field-radius);
+  border-end-start-radius: var(--acct-field-radius);
+}
+.acct .input-group > .btn {
+  border-start-end-radius: var(--acct-field-radius);
+  border-end-end-radius: var(--acct-field-radius);
+}
+.acct .input-password-toggle:active {
+  transform: scale(0.96);
+}
+
+/* Hints under fields and the password-rules sentence. */
+.acct .form-text,
+.acct small.form-text,
+.acct .small.text-muted {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+.acct .small.text-muted {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.acct .control-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Password strength: Joomla's script adds a <meter> and an <output> under the field. */
+.acct meter {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  margin-top: 0.65rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--acct-soft);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.acct meter::-webkit-meter-bar { height: 0.5rem; border: 0; border-radius: 999px; background: var(--acct-soft); }
+.acct meter::-webkit-meter-optimum-value { border-radius: 999px; background: var(--bs-success, #198754); }
+.acct meter::-webkit-meter-suboptimum-value { border-radius: 999px; background: var(--bs-warning, #e0a800); }
+.acct meter::-webkit-meter-even-less-good-value { border-radius: 999px; background: var(--bs-danger, #dc3545); }
+.acct meter::-moz-meter-bar { border-radius: 999px; background: var(--bs-success, #198754); }
+.acct meter:-moz-meter-sub-optimum::-moz-meter-bar { background: var(--bs-warning, #e0a800); }
+.acct meter:-moz-meter-sub-sub-optimum::-moz-meter-bar { background: var(--bs-danger, #dc3545); }
+.acct output {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--acct-muted);
+}
+
+/* ---------------------------------------------------------------
+   Buttons: rounded, hover / focus-visible / active on every one.
+   Only transform is animated.
+   --------------------------------------------------------------- */
+.acct .btn {
+  border-radius: var(--acct-field-radius);
+  transition: transform 0.25s var(--acct-spring);
+}
+.acct .btn-primary {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.15), 0 10px 20px -10px var(--acct-accent);
+}
+.acct .btn:hover {
+  transform: translateY(-2px);
+}
+.acct .btn:active {
+  transform: translateY(0);
+}
+.acct .btn:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--acct-ring);
+}
+.acct .acct-switch a {
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------
+   Details list on the profile page
+   --------------------------------------------------------------- */
+.acct .acct-dl {
+  margin: 0;
+}
+.acct .acct-dl > div {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--acct-line);
+}
+.acct .acct-dl > div:first-child {
+  padding-top: 0;
+}
+.acct .acct-dl > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.acct .acct-dl dt {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--acct-muted);
+}
+.acct .acct-dl dd {
+  margin: 0.15rem 0 0;
+  font-size: 1.0625rem;
+}
+
+/* Joomla's own multi-factor panel sits inside a card; keep its boxes quiet. */
+.acct .com-users-profile__multifactor .card,
+.acct .com-users-profile__multifactor .alert {
+  border-radius: var(--acct-field-radius);
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------
+   Entrance: a short rise on each block. Backwards fill only, so the finished
+   state never "owns" transform. Skipped for people who ask for less motion.
+   --------------------------------------------------------------- */
+@keyframes acct-rise {
+  from { opacity: 0; transform: translateY(14px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .acct .acct-reveal { animation: acct-rise 0.6s var(--acct-spring) backwards; }
+  .acct .acct-reveal-2 { animation-delay: 0.12s; }
+  .acct .acct-reveal-3 { animation-delay: 0.24s; }
+}
+
+/* ---------------------------------------------------------------
+   Invalid fields. Joomla's validation script adds .invalid (and aria-invalid) to a field it
+   rejects; the neutral border above must not hide that, so the error state is restated here.
+   --------------------------------------------------------------- */
+.acct .form-control.invalid,
+.acct .form-select.invalid,
+.acct [aria-invalid="true"] {
+  border-color: var(--bs-danger, #dc3545);
+}
+.acct .form-control.invalid:focus,
+.acct .form-select.invalid:focus,
+.acct [aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 0.28);
+}
+.acct .control-group:has(.invalid) .control-label label {
+  color: var(--bs-danger, #dc3545);
+}
+
+/* ---------------------------------------------------------------
+   Select boxes: some templates (Cassiopeia) add a grey block behind the arrow; use a plain arrow.
+   --------------------------------------------------------------- */
+.acct .form-select {
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='m3 6 5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+/* ---------------------------------------------------------------
+   Joomla's multi-factor panel (edit profile): calmer boxes inside the card.
+   --------------------------------------------------------------- */
+.acct #com-users-methods-reset-container {
+  border-color: var(--acct-line) !important;
+  border-radius: var(--acct-field-radius) !important;
+  background: var(--acct-soft) !important;
+}
+.acct .com-users-methods-list-method {
+  margin: 1rem 0 0 !important;
+  overflow: hidden;
+}
+.acct .com-users-methods-list-method-header {
+  background: var(--acct-soft);
+}
+.acct .com-users-methods-list-method-image {
+  border-radius: var(--acct-field-radius) !important;
+}
+
+/* The time-zone box is Joomla's fancy select (choices.js): give it the same plain look as the other selects. */
+.acct .choices__inner {
+  min-height: 0;
+  padding: 0.7rem 2.5rem 0.7rem 0.9rem;
+  border: 1px solid var(--acct-line);
+  border-radius: var(--acct-field-radius);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='m3 6 5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 1rem;
+}
+.acct .choices.is-focused .choices__inner,
+.acct .choices.is-open .choices__inner {
+  border-color: var(--acct-line);
+  box-shadow: 0 0 0 0.25rem var(--acct-ring);
+}
+.acct .choices__list--dropdown {
+  border-radius: var(--acct-field-radius);
+  overflow: hidden;
+}
+.acct joomla-field-fancy-select .choices[data-type*="select-one"] .choices__inner,
+.acct joomla-field-fancy-select .choices[data-type*="select-multiple"] .choices__inner {
+  min-height: 0;
+  padding: 0.7rem 2.5rem 0.7rem 0.9rem;
+  border: 1px solid var(--acct-line);
+  border-radius: var(--acct-field-radius);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='m3 6 5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 1rem;
+}
+.acct joomla-field-fancy-select .choices[data-type*="select-one"]::after {
+  display: none;
+}
+.acct joomla-field-fancy-select .choices {
+  border: 0;
+  border-radius: var(--acct-field-radius);
+}
+
+/* The field rules above use attribute selectors, which are more specific than .invalid on its own;
+   restate the rejected state at the same strength so the red border really shows. */
+.acct .controls input.invalid,
+.acct .controls select.invalid,
+.acct .controls input.invalid:focus,
+.acct .controls select.invalid:focus {
+  border-color: var(--bs-danger, #dc3545);
+}
