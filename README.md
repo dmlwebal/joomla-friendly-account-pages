@@ -1,8 +1,12 @@
 # Friendly Account Pages for Joomla
 
-Joomla's built-in registration and profile screens work, but they read like a form from 2012: one long column, "User Registration", "Minimum Requirements — Characters: 12". This is a drop-in set of **template overrides** that turns them into warm, rounded, card-based pages in plain English, using **only the Bootstrap 5 that Joomla already ships**. No extra library, no JavaScript, no plugin, no database change.
+Joomla's built-in sign-in, registration and profile screens work, but they read like forms from 2012: one long column, "User Registration", "Minimum Requirements — Characters: 12". This is a drop-in set of **template overrides** that turns them into warm, rounded, card-based pages in plain English, using **only the Bootstrap 5 that Joomla already ships**. No extra library, no JavaScript, no plugin, no database change.
 
-Version 1.0.0. For **Joomla 5.4 and 6.x**. GPL-2.0-or-later. **[Install guide](INSTALL.md)** · [Changelog](CHANGELOG.md) · [Report a problem](https://github.com/dmlwebal/joomla-friendly-account-pages/issues)
+Version 1.1.0. For **Joomla 5.4 and 6.x**. GPL-2.0-or-later. **[Install guide](INSTALL.md)** · [Changelog](CHANGELOG.md) · [Report a problem](https://github.com/dmlwebal/joomla-friendly-account-pages/issues)
+
+| Sign in | Forgotten password |
+|---|---|
+| ![Sign in](screenshots/login.png) | ![Forgotten password](screenshots/forgot-password.png) |
 
 | Register | Thank you |
 |---|---|
@@ -20,6 +24,8 @@ Screenshots are stock Cassiopeia, untouched: the colours and fonts are the templ
 
 ## What you get
 
+- **Sign in:** a centred card with "Welcome back", a lock badge, the remember-me option, "Forgot your password?" and "Forgot your username?" links, and "New here? Create an account" when registration is on. Passkey and other extra sign-in buttons that plugins add are kept. A matching **sign-out** card says "Ready to sign out?".
+- **Forgotten password:** all three steps in the same style: "Forgotten your password?" (ask for the email address), "Check your email" (enter the username and the code) and "Choose a new password". **Forgotten username** gets the same treatment.
 - **Register:** a welcome panel (heading, a warm line, three reasons to join) beside a form card, with "Already have an account? Sign in". Plain labels and hints: "Your email address", "Choose a password", "Type it once more", "Create my account".
 - **Thank you:** Joomla prints only a flash message here. This adds a heading and a clear next step that matches your activation setting (email link, or email link then admin approval).
 - **My profile:** a greeting card with the member's initial, "Member since…" and an Edit button, then "Your details" and "Your preferences" cards.
@@ -66,19 +72,21 @@ Copy the kit's **`html`** folder into `templates/<your template>/`, make sure th
 
 ## Tested
 
-Fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with stock Cassiopeia, each run through the same 40 checks in a real browser (desktop 1440 px and mobile 375 px), installing the kit exactly as described above. It was also tried by hand on Joomla 6.1.3 while building:
+Fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with stock Cassiopeia, each run through the same **59 checks** in a real browser (desktop 1440 px and mobile 375 px), installing the kit exactly as described above. It was also tried by hand on Joomla 6.1.3 while building.
 
-- **Register:** the page renders with its stylesheet, an empty submit is blocked and the fields flagged, a taken username shows Joomla's own error and keeps what was typed, and a valid sign-up creates the account and reaches the thank-you page.
+- **Register and thank-you:** the page renders with its stylesheet, an empty submit is blocked and the fields flagged, a taken username shows Joomla's own error and keeps what was typed, and a valid sign-up creates the account and reaches the thank-you page.
 - **Profile and edit profile** as a Registered user, a Manager and a Super User: the "Your preferences" card is hidden for Registered and shown for the other two; a rejected email field turns red; saving shows "Profile saved" and Cancel returns to the profile.
-- **Every page:** one `<main>`, one `<h1>`, headings in order inside the page, no PHP notices, no JavaScript errors or failed requests, and no sideways scroll at 375 px.
+- **Sign in and sign out:** a wrong password shows Joomla's message and the friendly form again, the right password signs in, and the sign-out card signs out.
+- **Forgotten password, start to finish:** an empty request is blocked; with a code set directly in the database (the test machine cannot send email), the "Check your email" step accepts it, "Choose a new password" saves the new password, and signing in with it works. **Forgotten username** submits without error.
+- **Every page:** one `<main>`, one `<h1>`, headings in order inside the page, no raw wording keys, no PHP notices, no JavaScript errors or failed requests, and no sideways scroll at 375 px.
 
 Checked by hand on 6.1.3 only: saving the profile as a Registered user leaves their stored time zone and language untouched.
 
-**Not tested:** other templates, captcha, the User - Profile plugin's extra fields, a real dark colour scheme (Cassiopeia has none), right-to-left languages, and languages other than English.
+**Not tested:** other templates, captcha, passkey or other extra sign-in buttons (the kit keeps them, but no such plugin was installed), the User - Profile plugin's extra fields, a real dark colour scheme (Cassiopeia has none), right-to-left languages, and languages other than English.
 
 ## Not included
 
-Login, forgotten password and username, and the wording of Joomla's activation email.
+The wording of Joomla's own emails (activation, password reset and username reminder).
 
 ## Licence and credit
 

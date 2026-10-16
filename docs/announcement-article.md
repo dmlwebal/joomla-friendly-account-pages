@@ -1,4 +1,4 @@
-# Announcement article: Friendly Account Pages for Joomla
+# Announcement article: Friendly Account Pages for Joomla (version 1.1)
 
 *Written for Joomla site builders, agencies and community readers (forums, newsletters, social). Ready to paste; swap the byline and date as needed.*
 
@@ -6,20 +6,22 @@
 
 ## Headline options
 
-1. **A free kit gives Joomla's registration and profile pages the makeover they have needed for years**
-2. **Friendly Account Pages: warm, plain-English sign-up and profile screens for Joomla 5 and 6**
+1. **A free kit gives Joomla's sign-in, registration and profile pages the makeover they have needed for years**
+2. **Friendly Account Pages: warm, plain-English sign-in, sign-up and profile screens for Joomla 5 and 6**
 3. **No more "Minimum Requirements — Characters: 12": a free, drop-in redesign of Joomla's member pages**
 
 ## Article
 
 **Free, open-source template overrides replace Joomla's dry registration and profile screens with rounded, card-based pages that follow each site's own colours and fonts.**
 
-Every Joomla site with members has the same awkward moment. A visitor decides to sign up, and meets a screen headed "User Registration", a line reading "* Required field", and a password hint that says "Minimum Requirements — Characters: 12". It works, but it reads like a form from another decade, and it sits oddly on a carefully designed site.
+Every Joomla site with members has the same awkward moments. A visitor decides to sign up, and meets a screen headed "User Registration", a line reading "* Required field", and a password hint that says "Minimum Requirements — Characters: 12". It works, but it reads like a form from another decade, and it sits oddly on a carefully designed site.
 
 **Friendly Account Pages** is a free kit that fixes that, without touching how Joomla handles accounts.
 
 ### What changes
 
+- **Sign in and sign out:** a centred "Welcome back" card with the remember-me option, links for forgotten details and a "New here? Create an account" line. Passkey and other extra sign-in buttons that plugins add are kept. A matching "Ready to sign out?" card handles the other direction.
+- **Forgotten password and username:** all three steps (ask for the email, enter the code, choose a new password) and the username reminder, in the same style and plain English.
 - **Register:** a welcome panel beside a clean form card. Labels in plain English ("Your email address", "Choose a password", "Type it once more") and a button that says "Create my account".
 - **Thank you:** Joomla shows only a flash message after sign-up. The kit adds a proper "Thank you for registering" page with a clear next step, written to match the site's activation setting.
 - **My profile:** a greeting card ("Hello, Sam", member since…) with an Edit button, and tidy cards for the member's details.
@@ -40,7 +42,7 @@ Download the ZIP, copy one folder (`html`) into the template, and make sure regi
 
 ### Tested and honest about its limits
 
-The kit has been tested on fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with the stock Cassiopeia template, through 40 automated browser checks on each: sign-up, errors, the thank-you page, profile editing, who can see what, headings and landmarks, and no sideways scrolling on a phone. It has not yet been tried with other templates, captcha, the optional extra-profile-fields plugin, right-to-left languages or a real dark colour scheme, and Joomla 4 is not a target. Feedback from other templates is the most useful thing anyone can send.
+The kit has been tested on fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with the stock Cassiopeia template, through 59 automated browser checks on each: sign-up, sign-in and sign-out, the whole forgotten-password flow, errors, the thank-you page, profile editing, who can see what, headings and landmarks, and no sideways scrolling on a phone. It has not yet been tried with other templates, captcha, passkey sign-in plugins, the optional extra-profile-fields plugin, right-to-left languages or a real dark colour scheme, and Joomla 4 is not a target. Feedback from other templates is the most useful thing anyone can send.
 
 ### Built with AI help, in the open
 
@@ -59,10 +61,10 @@ The kit was designed and written with the help of an AI assistant (Claude, from 
 ## Short versions
 
 **Social post (under 280 characters):**
-Joomla's sign-up and profile pages are due a makeover. Friendly Account Pages is a free, drop-in kit: rounded cards, plain-English wording, follows your template's colours and fonts. Joomla 5 and 6, Bootstrap only, no plugin. https://github.com/dmlwebal/joomla-friendly-account-pages
+Joomla's sign-in, sign-up and profile pages are due a makeover. Friendly Account Pages is a free, drop-in kit: rounded cards, plain-English wording, follows your template's colours and fonts. Joomla 5 and 6, Bootstrap only, no plugin. https://github.com/dmlwebal/joomla-friendly-account-pages
 
 **Forum post (three lines):**
-I've released a free set of template overrides that redesign Joomla's registration, thank-you, profile and edit-profile screens (Bootstrap 5 only, Joomla 5.4 and 6.x, GPL). Copy one folder into your template; wording is editable via Language Overrides. Tested on stock Cassiopeia; I'd love reports from other templates: https://github.com/dmlwebal/joomla-friendly-account-pages
+I've released a free set of template overrides that redesign Joomla's sign-in, forgotten-password, registration, thank-you, profile and edit-profile screens (Bootstrap 5 only, Joomla 5.4 and 6.x, GPL). Copy one folder into your template; wording is editable via Language Overrides. Tested on stock Cassiopeia; I'd love reports from other templates: https://github.com/dmlwebal/joomla-friendly-account-pages
 
 **One-line description (for directories and the repo):**
-Friendly, rounded, plain-English registration and profile pages for Joomla 5 and 6, as Bootstrap-only template overrides.
+Friendly, rounded, plain-English sign-in, forgotten-password, registration and profile pages for Joomla 5 and 6, as Bootstrap-only template overrides.
