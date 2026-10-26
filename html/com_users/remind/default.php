@@ -37,7 +37,8 @@ $wa->useScript('keepalive')
 $form = $this->form;
 $form->setFieldAttribute('email', 'label', 'TPL_ACCOUNT_EMAIL_LABEL');
 
-$controls = $form->renderControlFields();
+// Joomla 5.3+ and 6 print the hidden fields (task, token) through the form object; older 5.x templates print the token themselves.
+$controls = method_exists($form, 'renderControlFields') ? $form->renderControlFields() : '';
 
 if (!str_contains($controls, Session::getFormToken())) {
     $controls .= HTMLHelper::_('form.token');

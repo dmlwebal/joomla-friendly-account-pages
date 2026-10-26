@@ -1,4 +1,4 @@
-# Announcement article: Friendly Account Pages for Joomla (version 1.1)
+# Announcement article: Friendly Account Pages for Joomla (version 1.1.1)
 
 *Written for Joomla site builders, agencies and community readers (forums, newsletters, social). Ready to paste; swap the byline and date as needed.*
 
@@ -42,7 +42,7 @@ Download the ZIP, copy one folder (`html`) into the template, and make sure regi
 
 ### Tested and honest about its limits
 
-The kit has been tested on fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with the stock Cassiopeia template, through 59 automated browser checks on each: sign-up, sign-in and sign-out, the whole forgotten-password flow, errors, the thank-you page, profile editing, who can see what, headings and landmarks, and no sideways scrolling on a phone. It has not yet been tried with other templates, captcha, passkey sign-in plugins, the optional extra-profile-fields plugin, right-to-left languages or a real dark colour scheme, and Joomla 4 is not a target. Feedback from other templates is the most useful thing anyone can send.
+The kit supports **Joomla 5 and 6** and has been tested on fresh installs of **Joomla 5.2.6**, **5.4.10** and **6.2.0** with the stock Cassiopeia template, through 55 automated browser checks on each (Joomla 5.0 and 5.1 should work but were not run): sign-up, sign-in and sign-out, the whole forgotten-password flow, errors, the thank-you page, profile editing, who can see what, headings and landmarks, and no sideways scrolling on a phone. It has not yet been tried with other templates, captcha, passkey sign-in plugins, the optional extra-profile-fields plugin, right-to-left languages or a real dark colour scheme, and Joomla 4 is not a target. Feedback from other templates is the most useful thing anyone can send.
 
 ### Built with AI help, in the open
 
@@ -64,7 +64,7 @@ The kit was designed and written with the help of an AI assistant (Claude, from 
 Joomla's sign-in, sign-up and profile pages are due a makeover. Friendly Account Pages is a free, drop-in kit: rounded cards, plain-English wording, follows your template's colours and fonts. Joomla 5 and 6, Bootstrap only, no plugin. https://github.com/dmlwebal/joomla-friendly-account-pages
 
 **Forum post (three lines):**
-I've released a free set of template overrides that redesign Joomla's sign-in, forgotten-password, registration, thank-you, profile and edit-profile screens (Bootstrap 5 only, Joomla 5.4 and 6.x, GPL). Copy one folder into your template; wording is editable via Language Overrides. Tested on stock Cassiopeia; I'd love reports from other templates. Download: https://github.com/dmlwebal/joomla-friendly-account-pages/releases/latest
+I've released a free set of template overrides that redesign Joomla's sign-in, forgotten-password, registration, thank-you, profile and edit-profile screens (Bootstrap 5 only, Joomla 5 and 6, GPL). Copy one folder into your template; wording is editable via Language Overrides. Tested on stock Cassiopeia; I'd love reports from other templates. Download: https://github.com/dmlwebal/joomla-friendly-account-pages/releases/latest
 
 **One-line description (for directories and the repo):**
 Friendly, rounded, plain-English sign-in, forgotten-password, registration and profile pages for Joomla 5 and 6, as Bootstrap-only template overrides.

@@ -63,9 +63,9 @@ if ($usersConfig->get('allowUserRegistration')) {
     }
 }
 
-// Hidden fields. Joomla 6 prints the redirect and token through the form object; Joomla 5.4 prints them in the
-// template. Add whichever is missing so both work.
-$controls = $form->renderControlFields();
+// Hidden fields. Joomla 5.3+ and 6 print the redirect and token through the form object; older Joomla 5 templates
+// print them in the template. Add whichever is missing so every version works.
+$controls = method_exists($form, 'renderControlFields') ? $form->renderControlFields() : '';
 
 if (!str_contains($controls, 'name="return"')) {
     $return    = $form->getValue('return', '', $this->params->get('login_redirect_url', $this->params->get('login_redirect_menuitem', '')));

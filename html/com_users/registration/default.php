@@ -19,8 +19,10 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Session\Session;
 
 /** @var \Joomla\Component\Users\Site\View\Registration\HtmlView $this */
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
@@ -35,6 +37,13 @@ $wa->useScript('keepalive')
     ->registerAndUseStyle('acct.pages', 'templates/' . $acctTemplate . '/html/account-pages/account-pages.css');
 
 $form = $this->form;
+
+// Joomla 5.3+ and 6 print the hidden fields (task, token) through the form object; older 5.x templates print the token themselves.
+$controls = method_exists($form, 'renderControlFields') ? $form->renderControlFields() : '';
+
+if (!str_contains($controls, Session::getFormToken())) {
+    $controls .= HTMLHelper::_('form.token');
+}
 
 // Friendly label and hint for each core field: field name => [label key, hint key or null]
 $copy = [
@@ -121,7 +130,7 @@ $perks = [
                             <input type="hidden" name="task" value="registration.register">
                         </div>
 
-                        <?php echo $form->renderControlFields(); ?>
+                        <?php echo $controls; ?>
                     </form>
                 </div>
             </div>

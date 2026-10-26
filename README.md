@@ -2,7 +2,7 @@
 
 Joomla's built-in sign-in, registration and profile screens work, but they read like forms from 2012: one long column, "User Registration", "Minimum Requirements — Characters: 12". This is a drop-in set of **template overrides** that turns them into warm, rounded, card-based pages in plain English, using **only the Bootstrap 5 that Joomla already ships**. No extra library, no JavaScript, no plugin, no database change.
 
-Version 1.1.0. For **Joomla 5.4 and 6.x**. GPL-2.0-or-later. **[Install guide](INSTALL.md)** · [Changelog](CHANGELOG.md) · [Report a problem](https://github.com/dmlwebal/joomla-friendly-account-pages/issues)
+Version 1.1.1. For **Joomla 5 and 6** (tested on 5.2.6, 5.4.10 and 6.2.0). GPL-2.0-or-later. **[Install guide](INSTALL.md)** · [Changelog](CHANGELOG.md) · [Report a problem](https://github.com/dmlwebal/joomla-friendly-account-pages/issues)
 
 | Sign in | Forgotten password |
 |---|---|
@@ -66,13 +66,22 @@ Copy the kit's **`html`** folder into `templates/<your template>/`, make sure th
 - **The stylesheet is loaded through Joomla's web asset manager** (with a version stamp), from the kit's own folder.
 - **Joomla will tell you when core changes.** After an update, System > Site Templates (your template) lists any override whose original file has changed. That is the cue to compare the files; the notes at the top of each override say what was changed.
 
-## Works with
+## Compatibility
 
-**Joomla 5.4 and Joomla 6.x.** Joomla 4 is not a target: it ships an older Bootstrap, and the pages use classes from Bootstrap 5.2 and 5.3 (`text-bg-primary`, `text-body-secondary`). It has not been tested.
+| | Joomla 5.0 and 5.1 | Joomla 5.2 | Joomla 5.3 and 5.4 | Joomla 6.x |
+|---|---|---|---|---|
+| Supported | Yes | Yes | Yes | Yes |
+| Tested | No (see note) | **5.2.6** | **5.4.10** | **6.2.0** (6.1.4 by hand) |
+
+- **Joomla:** version 5.0 and later, and 6.x. The 1.1.1 release fixes a 500 error that version 1.1.0 gave on Joomla 5.0 to 5.2 (`Form::renderControlFields()` only exists from Joomla 5.3). Version 1.1.0 should only be used on Joomla 5.3 or later; use 1.1.1 or later everywhere.
+- **Joomla 5.0 and 5.1 were not run.** They should work: the overrides use only methods that exist in Joomla 5.0.0 (checked in the Joomla source), and the same code path is exercised on 5.2.6. If you try one, please tell us.
+- **Joomla 4 is not a target.** The pages use classes from Bootstrap 5.2 and 5.3 (`text-bg-primary`, `text-body-secondary`) and Joomla 4's template and view code differs. It has not been tested.
+- **PHP:** whatever your Joomla needs (PHP 8.1 or later for Joomla 5, PHP 8.3 or later for Joomla 6). The overrides use nothing newer than PHP 8.0 (`str_contains`). They were tested on PHP 8.4.
+- **Template:** Cassiopeia (and child templates of it) and any template built on Bootstrap 5. Only stock Cassiopeia has been tested.
 
 ## Tested
 
-Fresh installs of **Joomla 5.4.10** and **Joomla 6.2.0** with stock Cassiopeia, each run through the same **59 checks** in a real browser (desktop 1440 px and mobile 375 px), installing the kit exactly as described above. It was also tried by hand on Joomla 6.1.4 while building.
+Version 1.1.1 was installed from the kit's `html` folder on fresh **Joomla 5.2.6**, **5.4.10** and **6.2.0** sites with stock Cassiopeia, and each was run through the same **55 checks** in a real browser (desktop 1440 px and mobile 375 px), as described below. On 5.2.6 the 1.1.0 files give a 500 error on every page that was tried (register, sign in, forgotten password, forgotten username) and the 1.1.1 files do not. Earlier releases were tested on 5.4.10 and 6.2.0 with a 59-check run; it was also tried by hand on Joomla 6.1.4 while building.
 
 - **Register and thank-you:** the page renders with its stylesheet, an empty submit is blocked and the fields flagged, a taken username shows Joomla's own error and keeps what was typed, and a valid sign-up creates the account and reaches the thank-you page.
 - **Profile and edit profile** as a Registered user, a Manager and a Super User: the "Your preferences" card is hidden for Registered and shown for the other two; a rejected email field turns red; saving shows "Profile saved" and Cancel returns to the profile.

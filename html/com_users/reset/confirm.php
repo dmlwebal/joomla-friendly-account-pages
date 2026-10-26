@@ -37,7 +37,8 @@ $form->setFieldAttribute('username', 'label', 'TPL_ACCOUNT_LOGIN_USERNAME_LABEL'
 $form->setFieldAttribute('token', 'label', 'TPL_ACCOUNT_RESET_CODE_LABEL');
 $form->setFieldAttribute('token', 'description', 'TPL_ACCOUNT_RESET_CODE_HINT');
 
-$controls = $form->renderControlFields();
+// Joomla 5.3+ and 6 print the hidden fields (task, token) through the form object; older 5.x templates print the token themselves.
+$controls = method_exists($form, 'renderControlFields') ? $form->renderControlFields() : '';
 
 if (!str_contains($controls, Session::getFormToken())) {
     $controls .= HTMLHelper::_('form.token');

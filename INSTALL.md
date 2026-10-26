@@ -2,7 +2,7 @@
 
 About five minutes. You need to be able to put files on the site (FTP, SFTP, your hosting file manager, or a local copy of the site). Nothing is installed through Joomla's Extensions screen, and nothing changes in the database.
 
-**Works with:** Joomla 5.4 and 6.x, on a template built on Bootstrap 5 (Cassiopeia, and most current templates).
+**Works with:** Joomla 5 (5.0 and later) and Joomla 6.x, on a template built on Bootstrap 5 (Cassiopeia, and most current templates). Tested on Joomla 5.2.6, 5.4.10 and 6.2.0 with PHP 8.4; the kit needs nothing beyond what Joomla itself needs. Full details are in the [Compatibility section of the README](README.md#compatibility).
 
 ## Before you start
 
@@ -11,7 +11,7 @@ About five minutes. You need to be able to put files on the site (FTP, SFTP, you
 
 ## Step 1: Get the kit
 
-Download `friendly-account-pages-1.1.0.zip` from the [Releases page](https://github.com/dmlwebal/joomla-friendly-account-pages/releases/latest) and unzip it on your computer. Inside you will find a folder called **`html`**, plus this guide, the licence and screenshots.
+Download `friendly-account-pages-1.1.1.zip` from the [Releases page](https://github.com/dmlwebal/joomla-friendly-account-pages/releases/latest) and unzip it on your computer. Inside you will find a folder called **`html`**, plus this guide, the licence and screenshots.
 
 ## Step 2: Copy the `html` folder into your template
 
@@ -84,7 +84,7 @@ Only people who are allowed to log in to the administrator (Manager, Administrat
 
 ## Updating
 
-Replace the kit's files with the new ones (same folders). Your Language Overrides are untouched. Read the [changelog](CHANGELOG.md) first. After a Joomla update, open **System > Site Templates** and pick your template: Joomla lists any override whose original file has changed and lets you mark it as checked. That is your cue to compare the files.
+Replace the kit's files with the new ones (same folders). **If you installed version 1.1.0 on Joomla 5.0, 5.1 or 5.2 and saw a 500 error, update to 1.1.1: it fixes that.** Your Language Overrides are untouched. Read the [changelog](CHANGELOG.md) first. After a Joomla update, open **System > Site Templates** and pick your template: Joomla lists any override whose original file has changed and lets you mark it as checked. That is your cue to compare the files.
 
 ## Uninstalling
 

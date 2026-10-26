@@ -23,6 +23,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Session\Session;
 
 /** @var Joomla\Component\Users\Site\View\Profile\HtmlView $this */
 
@@ -44,6 +45,13 @@ $wa->useScript('keepalive')
     ->registerAndUseStyle('acct.pages', 'templates/' . $acctTemplate . '/html/account-pages/account-pages.css');
 
 $form = $this->form;
+
+// Joomla 5.3+ and 6 print the hidden fields (task, token) through the form object; older 5.x templates print the token themselves.
+$controls = method_exists($form, 'renderControlFields') ? $form->renderControlFields() : '';
+
+if (!str_contains($controls, Session::getFormToken())) {
+    $controls .= HTMLHelper::_('form.token');
+}
 
 // Friendly label and hint for the core fields: field name => [label key, hint key or null]
 $copy = [
@@ -175,6 +183,6 @@ if (!$this->getCurrentUser()->authorise('core.login.admin')) {
             <input type="hidden" name="option" value="com_users">
         </div>
 
-        <?php echo $form->renderControlFields(); ?>
+        <?php echo $controls; ?>
     </form>
 </div>
